@@ -119,6 +119,8 @@ code {
 }
 .section--hero {
     padding: 72px 0 56px;
+    position: relative;
+    overflow: hidden;
 }
 .section--alt {
     background: var(--paper-2);
@@ -181,6 +183,28 @@ code {
         grid-template-columns: 1fr;
         gap: 28px;
     }
+}
+
+/* ── STAMP ── */
+.stamp-alpha {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%) rotate(12deg);
+    font-family: var(--sans);
+    font-weight: 900;
+    font-size: clamp(60px, 12vw, 140px);
+    color: #d93025;
+    opacity: 0.15;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    padding: 0.2em 0.5em;
+    border: 0.15em double #d93025;
+    text-transform: uppercase;
+    border-radius: 4px;
 }
 
 /* ── TABLES ── */
