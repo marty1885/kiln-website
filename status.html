@@ -3,23 +3,23 @@ layout: default
 title: Compatibility Status - Kiln
 ---
 
-<section class="hero">
+<section class="section section--hero">
     <div class="wrap">
-        <span class="eyebrow"><b>Kiln</b> · Status</span>
-        <h1>Project <em>Compatibility</em></h1>
-        <p class="lede">
+        <span class="type-eyebrow"><b>Kiln</b> · Status</span>
+        <h1 class="type-h1">Project <em>Compatibility</em></h1>
+        <p class="type-lede">
             Automated builds against real-world projects to ensure compatiblity and Kiln not breaking accidentally. Large projects are not tracked due to limited resources.
         </p>
     </div>
 </section>
 
-<section class="status-page">
+<section class="section">
     <div class="wrap">
         <div id="status-loading" class="status-message">Fetching matrix data...</div>
         <div id="status-error" class="status-message" style="display: none; color: var(--rust);">Failed to load compatibility data. Please try again later.</div>
         
-        <div class="table-scroll">
-            <table id="matrix-table" style="display: none;">
+        <div class="table-wrap">
+            <table id="matrix-table" class="data" style="display: none;">
                 <thead>
                     <tr>
                         <th>Project</th>
@@ -36,44 +36,11 @@ title: Compatibility Status - Kiln
 </section>
 
 <style>
-    .status-page {
-        padding: 48px 0 80px;
-    }
     .status-message {
         font-family: var(--mono);
         font-size: 14px;
         color: var(--muted);
         padding: 40px 0;
-    }
-    .table-scroll {
-        overflow-x: auto;
-        border: 1px solid var(--border);
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        font-family: var(--mono);
-        font-size: 13px;
-        background: var(--paper);
-    }
-    th {
-        text-align: left;
-        background: var(--paper-2);
-        padding: 12px 16px;
-        border-bottom: 1px solid var(--border);
-        color: var(--muted);
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        font-size: 11px;
-    }
-    td {
-        padding: 12px 16px;
-        border-bottom: 1px solid var(--border-soft);
-        color: var(--ink-soft);
-    }
-    tr:last-child td {
-        border-bottom: none;
     }
     .status-tag {
         display: inline-block;

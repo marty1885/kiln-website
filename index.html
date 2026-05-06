@@ -3,11 +3,11 @@ layout: default
 title: Kiln - a CMake-compatible build system
 ---
 
-<section class="hero">
+<section class="section section--hero">
     <div class="wrap">
-        <span class="eyebrow"><b>Kiln</b> · Apache 2.0</span>
-        <h1>A CMake-compatible <em>build system</em></h1>
-        <p class="lede">
+        <span class="type-eyebrow"><b>Kiln</b> · Apache 2.0</span>
+        <h1 class="type-h1">A CMake-compatible <em>build system</em></h1>
+        <p class="type-lede">
             Kiln run your existing <code>CMakeLists.txt</code> and builds it.
             Faster configuration, faster build, no more stale cache.
         </p>
@@ -23,7 +23,7 @@ title: Kiln - a CMake-compatible build system
     </div>
 </section>
 
-<section class="features" id="about">
+<section class="section" id="about">
     <div class="wrap">
         <div class="feat-grid">
             <div class="feat">
@@ -63,15 +63,92 @@ title: Kiln - a CMake-compatible build system
     </div>
 </section>
 
-<section class="code-band" id="install">
-    <div class="wrap grid">
+<section class="section section--alt" id="performance">
+    <div class="wrap">
+        <h2 class="type-h2">Performance</h2>
+        <p class="type-lede">
+            Kiln is designed for high-performance configuration and execution.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 32px">
+            <div>
+                <h4 class="status-list-header">Interpreter Performance</h4>
+                <div class="table-wrap">
+                    <table class="data">
+                        <thead>
+                            <tr>
+                                <th>Benchmark</th>
+                                <th>CMake</th>
+                                <th>Kiln</th>
+                                <th>Speedup</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="bold">8 queens</td>
+                                <td>0.649s</td>
+                                <td class="bold accent">0.066s</td>
+                                <td class="bold">9.8x</td>
+                            </tr>
+                            <tr>
+                                <td class="bold">Knight's tour (N=35)</td>
+                                <td>0.446s</td>
+                                <td class="bold accent">0.051s</td>
+                                <td class="bold">8.7x</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="status-list-header">Configuration Performance</h4>
+                <div class="table-wrap">
+                    <table class="data">
+                        <thead>
+                            <tr>
+                                <th>Project</th>
+                                <th>CMake</th>
+                                <th>Kiln</th>
+                                <th>Speedup</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="bold">Warm LLVM reconfig</td>
+                                <td>1.8s</td>
+                                <td class="bold accent">0.2s</td>
+                                <td class="bold">9.0x</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <p
+            style="
+                font-family: var(--mono);
+                font-size: 11px;
+                color: var(--muted);
+                margin-top: 16px;
+            "
+        >
+            Measured on Linux with a warm disk cache.
+            <b>CMake 4.3.2 vs Kiln 0.1.0</b>.
+        </p>
+    </div>
+</section>
+
+<section class="section" id="install">
+    <div class="wrap grid-2 grid-asymmetric">
         <div>
-            <h2>Try it.</h2>
+            <h2 class="type-h2">Try it.</h2>
             <p>
                 Build from source, then point Kiln at any directory containing a
                 <code>CMakeLists.txt</code>.
             </p>
-            <div class="links">
+            <div class="links-list">
                 <a href="https://github.com/marty1885/kiln"
                     >→ Source on GitHub</a
                 >
@@ -99,18 +176,18 @@ title: Kiln - a CMake-compatible build system
     </div>
 </section>
 
-<section class="status" id="status">
+<section class="section section--alt" id="status">
     <div class="wrap">
-        <h2 class="status-h">What works, what doesn&rsquo;t.</h2>
-        <p class="status-lede">
+        <h2 class="type-h2">What works, what doesn&rsquo;t, yet.</h2>
+        <p>
             Kiln is early software. Most projects you point it at on Linux
             compile and link correctly. Plenty of things needs more work.
         </p>
 
         <div class="status-grid">
             <div>
-                <h4>Working today</h4>
-                <ul>
+                <h4 class="status-list-header">Working today</h4>
+                <ul class="status-list">
                     <li>GCC on Linux, C, C++ and ASM</li>
                     <li>
                         Incremental builds, dependency tracking,
@@ -127,8 +204,8 @@ title: Kiln - a CMake-compatible build system
                 </ul>
             </div>
             <div>
-                <h4>In progress / planned</h4>
-                <ul class="todo">
+                <h4 class="status-list-header">In progress / planned</h4>
+                <ul class="status-list todo">
                     <li>
                         <b>Windows / MSVC support</b>
                     </li>
