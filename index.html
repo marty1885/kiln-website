@@ -8,7 +8,7 @@ title: Kiln - a CMake-compatible build system
         <span class="type-eyebrow"><b>Kiln</b> · Apache 2.0</span>
         <h1 class="type-h1">A CMake-compatible <em>build system</em></h1>
         <p class="type-lede">
-            Kiln run your existing <code>CMakeLists.txt</code> and builds it.
+            Kiln takes your existing <code>CMakeLists.txt</code> and builds it.
             Faster configuration, faster build, no more stale cache.
         </p>
         <div class="hero-cta">
@@ -38,8 +38,8 @@ title: Kiln - a CMake-compatible build system
                 <h3><span class="num">02</span>CMake compatible</h3>
                 <p>
                     Reads your existing <code>CMakeLists.txt</code> and runs
-                    CMake&rsquo;s own <code>Find*.cmake</code> modules. Heroic
-                    rewrite not needed.
+                    CMake&rsquo;s own <code>Find*.cmake</code> modules. Your
+                    projects keeps on working as-is.
                 </p>
             </div>
             <div class="feat">
@@ -47,7 +47,9 @@ title: Kiln - a CMake-compatible build system
                 <p>
                     External projects (FetchContent, ExternalProject, CPM) get
                     configured in-process and merged into the parent graph.
-                    Parallel builds across project boundaries.
+                    Parallel builds across project boundaries. With proactive
+                    missing dependency tracking. No more magic missing object
+                    files.
                 </p>
             </div>
             <div class="feat">
@@ -67,7 +69,7 @@ title: Kiln - a CMake-compatible build system
     <div class="wrap">
         <h2 class="type-h2">Performance</h2>
         <p class="type-lede">
-            Kiln is designed for high-performance configuration and execution.
+            Because time-to-beginning-of-build is also very important.
         </p>
 
         <div style="display: flex; flex-direction: column; gap: 32px">
@@ -103,7 +105,9 @@ title: Kiln - a CMake-compatible build system
                                 <td class="bold">2.7x</td>
                             </tr>
                             <tr>
-                                <td class="bold">Levenshtein Distance (len=70)</td>
+                                <td class="bold">
+                                    Levenshtein Distance (len=70)
+                                </td>
                                 <td>3.56s</td>
                                 <td class="bold accent">1.351s</td>
                                 <td class="bold">2.6x</td>
