@@ -1,0 +1,162 @@
+---
+layout: default
+title: Kiln - a CMake-compatible build system
+---
+
+<section class="hero">
+    <div class="wrap">
+        <span class="eyebrow"><b>Kiln</b> · Apache 2.0</span>
+        <h1>A CMake-compatible <em>build system</em></h1>
+        <p class="lede">
+            Kiln run your existing <code>CMakeLists.txt</code> and builds it.
+            Faster configuration, faster build, no more stale cache.
+        </p>
+        <div class="hero-cta">
+            <a href="#install">Install</a>
+            <a href="https://github.com/marty1885/kiln" class="muted"
+                >github.com/marty1885/kiln</a
+            >
+            <a href="https://clehaxze.tw/gemlog/kiln.gmi" class="muted"
+                >Read the writeup</a
+            >
+        </div>
+    </div>
+</section>
+
+<section class="features" id="about">
+    <div class="wrap">
+        <div class="feat-grid">
+            <div class="feat">
+                <h3><span class="num">01</span>An actual build system</h3>
+                <p>
+                    Configuration, dependency resolution, and execution in one
+                    go. New files in a globbed directory get picked up because
+                    the configuration <em>is</em> the build.
+                </p>
+            </div>
+            <div class="feat">
+                <h3><span class="num">02</span>CMake compatible</h3>
+                <p>
+                    Reads your existing <code>CMakeLists.txt</code> and runs
+                    CMake&rsquo;s own <code>Find*.cmake</code> modules. Heroic
+                    rewrite not needed.
+                </p>
+            </div>
+            <div class="feat">
+                <h3><span class="num">03</span>Cross-project parallelism</h3>
+                <p>
+                    External projects (FetchContent, ExternalProject, CPM) get
+                    configured in-process and merged into the parent graph.
+                    Parallel builds across project boundaries.
+                </p>
+            </div>
+            <div class="feat">
+                <h3><span class="num">04</span>Built-in debugger</h3>
+                <p>
+                    Step through CMake from a GDB-style prompt.
+                    <code>kiln_dump_target_info</code> prints fully-resolved
+                    properties for any target. Tools that save hours running
+                    around with educated guesses.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="code-band" id="install">
+    <div class="wrap grid">
+        <div>
+            <h2>Try it.</h2>
+            <p>
+                Build from source, then point Kiln at any directory containing a
+                <code>CMakeLists.txt</code>.
+            </p>
+            <div class="links">
+                <a href="https://github.com/marty1885/kiln"
+                    >→ Source on GitHub</a
+                >
+                <a href="https://github.com/marty1885/kiln/issues"
+                    >→ Issue tracker</a
+                >
+                <a href="https://clehaxze.tw/gemlog/kiln.gmi"
+                    >→ Design writeup</a
+                >
+            </div>
+        </div>
+        <pre class="term"><span class="c"># Build Kiln</span>
+<span class="m">$</span> <span class="k">git</span> clone https://github.com/marty1885/kiln
+<span class="m">$</span> <span class="k">cd</span> kiln
+<span class="m">$</span> <span class="k">cmake</span> -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+<span class="m">$</span> <span class="k">cmake</span> --build build
+
+<span class="c"># Run it on a project</span>
+<span class="m">$</span> <span class="k">build/kiln</span> -C . --config release
+<span class="g">   Compiling </span> [kiln] CMakeArray.cpp
+<span class="g">   Compiling </span> [kiln] ast_cache.cpp
+<span class="g">   Compiling </span> [kiln] autogen.cpp
+   ...
+<span class="g">     Finished</span>    build in 12.4s</pre>
+    </div>
+</section>
+
+<section class="status" id="status">
+    <div class="wrap">
+        <h2 class="status-h">What works, what doesn&rsquo;t.</h2>
+        <p class="status-lede">
+            Kiln is early software. Most projects you point it at on Linux
+            compile and link correctly. Plenty of things needs more work.
+        </p>
+
+        <div class="status-grid">
+            <div>
+                <h4>Working today</h4>
+                <ul>
+                    <li>GCC on Linux, C, C++ and ASM</li>
+                    <li>
+                        Incremental builds, dependency tracking,
+                        install-to-prefix
+                    </li>
+                    <li>FetchContent, ExternalProject, CPM</li>
+                    <li>AUTOMOC / UIC / RCC</li>
+                    <li>Interactive debugger and Chrome-trace profiler</li>
+                    <li>
+                        Builds tested against LLVM, Qt6Core, TBB, Folly, POCO,
+                        DuckDB, MariaDB, drogon, libzmq, Vorbis, Opus, jsoncpp,
+                        and CMake itself
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4>In progress / planned</h4>
+                <ul class="todo">
+                    <li>
+                        <b>Windows / MSVC support</b>
+                    </li>
+                    <li><b>FreeBSD support</b></li>
+                    <li>
+                        <b>macOS support</b>
+                    </li>
+                    <li><b>Cross-compilation</b></li>
+                    <li>
+                        <b
+                            >CUDA, HIP, Objective-C, Fortran, ISPC, Java
+                            support</b
+                        >
+                    </li>
+                    <li>
+                        <b>CPack.</b> Not supported. <code>install</code> to a
+                        prefix works; producing <code>.deb</code>,
+                        <code>.rpm</code>, <code>.dmg</code>, <code>.msi</code>,
+                        etc. does not.
+                    </li>
+                    <li><b>Unity builds</b></li>
+                    <li>
+                        <b>CMake compatibility.</b> Always a moving target. Real
+                        projects builds; corner cases of the language and rare
+                        modules will hit edges. Please file issues.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
