@@ -410,6 +410,19 @@ pre.term .p {
 pre.term .m {
     color: #807a6c;
 }
+pre.term .b {
+    color: #6fa8d6;
+    font-weight: 600;
+}
+pre.term .r {
+    color: #e06c5d;
+    font-weight: 600;
+}
+pre.term .div {
+    display: block;
+    border-top: 1px dashed #2e2a24;
+    margin: 10px 0;
+}
 
 /* ── STRIP ── */
 .strip {

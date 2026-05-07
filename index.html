@@ -68,7 +68,49 @@ title: Kiln - a CMake-compatible build system
     </div>
 </section>
 
-<section class="section section--alt" id="performance">
+<section class="section section--alt" id="catch-bugs">
+    <div class="wrap">
+        <h2 class="type-h2">Catch Bugs Early</h2>
+        <p class="type-lede">Because debugging is harder than writing code.</p>
+
+        <pre
+            class="term"
+        ><span class="k">warning:</span> Unbalanced generator expression (missing closing '&gt;')
+<span class="b">  --&gt;</span> /home/me/mariadb-server/cmake/install_macros.cmake:291:7
+<span class="b">       |</span>
+<span class="b">   291 |</span>       $&lt;$&lt;BOOL:${VCPKG_INSTALLED_DIR}&gt;:${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/bin
+<span class="b">       |</span>       <span class="b">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="b">   = note:</span> Accepting as-is - CMake treats generator expressions as strings at parse time.
+        </pre>
+
+        <p>
+            With error reporting exact cause and location. Ledgable, helpful and
+            actionable.
+        </p>
+        <pre
+            class="term"
+            style="margin-top: 24px"
+        ><span class="c"># CMake</span>
+CMake Error at cmake/modules.cmake:11 (_validate_dependency):
+  Unknown CMake command "_validate_dependency".
+Call Stack (most recent call first):
+  cmake/modules.cmake:6 (_link_module_dependencies)
+  CMakeLists.txt:6 (add_module)
+<span class="div"></span><span class="c"># Kiln</span>
+<span class="r">error:</span> Unknown command: _validate_dependency
+<span class="b">  --&gt;</span> /home/me/Documents/some_project/cmake/modules.cmake:11:9
+<span class="b">      |</span>
+<span class="b">   11 |</span>         _validate_dependency(${dep})
+<span class="b">      |</span>         <span class="r">^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+Call Stack (most recent call first):
+  /home/me/some_project/cmake/modules.cmake:10 (foreach)
+  /home/me/some_project/cmake/modules.cmake:6 (_link_module_dependencies)
+  /home/me/some_project/CMakeLists.txt:6 (add_module)
+<span class="r">Error:</span> Interpretation error</pre>
+    </div>
+</section>
+
+<section class="section" id="performance">
     <div class="wrap">
         <h2 class="type-h2">Performance</h2>
         <p class="type-lede">
@@ -158,7 +200,7 @@ title: Kiln - a CMake-compatible build system
     </div>
 </section>
 
-<section class="section" id="install">
+<section class="section section--alt" id="install">
     <div class="wrap grid-2 grid-asymmetric">
         <div>
             <h2 class="type-h2">Try it.</h2>
@@ -190,11 +232,11 @@ title: Kiln - a CMake-compatible build system
 <span class="g">   Compiling </span> [kiln] ast_cache.cpp
 <span class="g">   Compiling </span> [kiln] autogen.cpp
    ...
-<span class="g">    Finished</span>    build in 12.4s</pre>
+<span class="g">    Finished</span>    build in 12.42s (critical path: 8.75s)</pre>
     </div>
 </section>
 
-<section class="section section--alt" id="status">
+<section class="section" id="status">
     <div class="wrap">
         <h2 class="type-h2">What works, what doesn&rsquo;t, yet.</h2>
         <p>
