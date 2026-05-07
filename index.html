@@ -12,7 +12,7 @@ title: Kiln - a CMake-compatible build system
         </h1>
         <p class="type-lede">
             Kiln takes your existing <code>CMakeLists.txt</code> and builds it.
-            Faster configuration, faster build, no more stale cache.
+            No more stale cache, modern semantics, faster configuration.
         </p>
         <div class="hero-cta">
             <a href="#install">Install</a>
@@ -59,9 +59,12 @@ title: Kiln - a CMake-compatible build system
                 <h3><span class="num">04</span>Built-in debugger</h3>
                 <p>
                     Step through CMake from a GDB-style prompt.
-                    <a href="https://github.com/marty1885/kiln/blob/master/docs/debugging-cmake-programs.md#inspecting-a-target-with-kiln_dump_target_info"><code>kiln_dump_target_info</code></a> prints fully-resolved
-                    properties for any target. Tools that save hours running
-                    around with educated guesses.
+                    <a
+                        href="https://github.com/marty1885/kiln/blob/master/docs/debugging-cmake-programs.md#inspecting-a-target-with-kiln_dump_target_info"
+                        ><code>kiln_dump_target_info</code></a
+                    >
+                    prints fully-resolved properties for any target. Tools that
+                    save hours running around with educated guesses.
                 </p>
             </div>
         </div>
@@ -182,6 +185,47 @@ Call Stack (most recent call first):
             </div>
 
             <div>
+                <h4 class="status-list-header">
+                    Real world build performance<sup>1</sup>
+                </h4>
+                <div class="table-wrap">
+                    <table class="data">
+                        <thead>
+                            <tr>
+                                <th>Project</th>
+                                <th>CMake + Ninja</th>
+                                <th>CMake + Make</th>
+                                <th>Kiln</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="bold">
+                                    <a
+                                        href="https://github.com/aifoundry-org/et-platform"
+                                        >aifoundry-org/et-platform</a
+                                    >
+                                </td>
+                                <td>-</td>
+                                <td>73.85s</td>
+                                <td class="bold accent">57.41s</td>
+                            </tr>
+                            <tr>
+                                <td class="bold">
+                                    <a href="https://github.com/MariaDB/server"
+                                        >mariadb-server</a
+                                    >
+                                </td>
+                                <td>160.52s</td>
+                                <td>168.60s</td>
+                                <td class="bold accent">156.21s</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
                 <h4 class="status-list-header">Configuration Performance</h4>
                 <div class="table-wrap">
                     <table class="data">
@@ -195,7 +239,9 @@ Call Stack (most recent call first):
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="bold">Warm LLVM reconfig</td>
+                                <td class="bold">
+                                    Warm LLVM reconfig<sup>2</sup>
+                                </td>
                                 <td>1.8s</td>
                                 <td class="bold accent">0.2s</td>
                                 <td class="bold">9.0x</td>
@@ -215,6 +261,15 @@ Call Stack (most recent call first):
             "
         >
             Measured on Linux with <b>CMake 4.3.2 and Kiln 0.1.0</b>.
+            <br />
+            <sup>1</sup> Build performance compared with release builds.
+            <br />
+            <sup>2</sup> Apples-to-oranges: CMake&rsquo;s warm path is backed by
+            <code>CMakeCache.txt</code>, which memoizes
+            <code>find_package</code> results and caches variables. Kiln caches
+            lower - file lookups by mtime, glob with agressive invalidation,
+            etc.. - so it bypasses CMake modules&rsquo; built-in short-circuit
+            paths and re-runs more work.
         </p>
     </div>
 </section>
@@ -251,7 +306,7 @@ Call Stack (most recent call first):
 <span class="g">   Compiling </span> [kiln] ast_cache.cpp
 <span class="g">   Compiling </span> [kiln] autogen.cpp
    ...
-<span class="g">    Finished</span>    build in 12.42s (critical path: 8.75s)</pre>
+<span class="g">    Finished</span>    build in 12.42s (critical path: 8.7s)</pre>
     </div>
 </section>
 
@@ -306,6 +361,7 @@ Call Stack (most recent call first):
                         etc. does not.
                     </li>
                     <li><b>Unity builds</b></li>
+                    <li><b>C++ module support</b></li>
                     <li>
                         <b>CMake compatibility.</b> Always a moving target. Real
                         projects builds; corner cases of the language and rare
