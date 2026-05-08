@@ -38,7 +38,7 @@ title: Kiln - a CMake-compatible build system
                 </p>
             </div>
             <div class="feat">
-                <h3><span class="num">02</span>CMake compatible</h3>
+                <h3><span class="num">02</span>CMake compatiblity</h3>
                 <p>
                     Reads your existing <code>CMakeLists.txt</code> and runs
                     CMake&rsquo;s own <code>Find*.cmake</code> modules. Your
@@ -179,6 +179,51 @@ Call Stack (most recent call first):
                                 <td class="bold accent">1.351s</td>
                                 <td class="bold">2.6x</td>
                             </tr>
+                            <tr>
+                                <td class="bold">
+                                    <a
+                                        href="https://github.com/64/cmake-raytracer/blob/112030c65d3265aeba5a9364756f66a8f695d031/CMakeLists.txt"
+                                        >cmake-raytracer</a
+                                    >
+                                </td>
+                                <td>8.68s</td>
+                                <td class="bold accent">1.21s</td>
+                                <td class="bold">7.17x</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="status-list-header">Configuration Performance</h4>
+                <div class="table-wrap">
+                    <table class="data">
+                        <thead>
+                            <tr>
+                                <th>Project</th>
+                                <th>CMake</th>
+                                <th>Kiln</th>
+                                <th>Speedup</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="bold">
+                                    Warm LLVM reconfig<sup>1</sup>
+                                </td>
+                                <td>1.8s</td>
+                                <td class="bold accent">0.2s</td>
+                                <td class="bold">9.0x</td>
+                            </tr>
+                            <tr>
+                                <td class="bold">
+                                    Cold CMake config<sup>2</sup>
+                                </td>
+                                <td>21.6s</td>
+                                <td class="bold accent">11.7s</td>
+                                <td class="bold">1.84x</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -186,7 +231,7 @@ Call Stack (most recent call first):
 
             <div>
                 <h4 class="status-list-header">
-                    Real world build performance<sup>1</sup>
+                    Real world build performance<sup>3</sup>
                 </h4>
                 <div class="table-wrap">
                     <table class="data">
@@ -224,32 +269,6 @@ Call Stack (most recent call first):
                     </table>
                 </div>
             </div>
-
-            <div>
-                <h4 class="status-list-header">Configuration Performance</h4>
-                <div class="table-wrap">
-                    <table class="data">
-                        <thead>
-                            <tr>
-                                <th>Project</th>
-                                <th>CMake</th>
-                                <th>Kiln</th>
-                                <th>Speedup</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="bold">
-                                    Warm LLVM reconfig<sup>2</sup>
-                                </td>
-                                <td>1.8s</td>
-                                <td class="bold accent">0.2s</td>
-                                <td class="bold">9.0x</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
 
         <p
@@ -261,17 +280,20 @@ Call Stack (most recent call first):
             "
         >
             Measured on Linux with <b>CMake 4.3.2 and Kiln 0.1.0</b>.
-            Methodology is what you&rsquo;d expect: point each tool at the
-            repository, configure, build, sum the wall-clock time.
             <br />
-            <sup>1</sup> Build performance compared with release builds.
-            <br />
-            <sup>2</sup> Apples-to-oranges: CMake&rsquo;s warm path is backed by
+            <sup>1</sup> Apples-to-oranges: CMake&rsquo;s warm path is backed by
             <code>CMakeCache.txt</code>, which memoizes
             <code>find_package</code> results and caches variables. Kiln caches
             lower - file lookups by mtime, glob with agressive invalidation,
             etc.. - so it bypasses CMake modules&rsquo; built-in short-circuit
-            paths and re-runs more work.
+            paths and re-runs more work.<br />
+            <sup>2</sup> The CMake project itself. Does not include CMake
+            generating build files (configuration only).<br />
+            <sup>3</sup> Build performance compared with release builds.
+            Methodology is as expected: point each tool at the target
+            repository, configure, build and sum the wall-clock time. Build time
+            is dominated by compilation with difference down to build system
+            overhead and efficiency.
         </p>
     </div>
 </section>
@@ -342,6 +364,9 @@ Call Stack (most recent call first):
             <div>
                 <h4 class="status-list-header">In progress / planned</h4>
                 <ul class="status-list todo">
+                    <li>
+                        <b>Full CMake property set support</b>
+                    </li>
                     <li>
                         <b>Windows / MSVC support</b>
                     </li>
