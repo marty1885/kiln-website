@@ -111,6 +111,22 @@ Call Stack (most recent call first):
   /home/me/some_project/cmake/modules.cmake:6 (_link_module_dependencies)
   /home/me/some_project/CMakeLists.txt:6 (add_module)
 <span class="r">Error:</span> Interpretation error</pre>
+
+        <p class="type-body" style="margin-top: 24px">
+            And it even watches for side effects.
+        </p>
+
+        <pre
+            class="term"
+            style="margin-top: 24px"
+        ><span class="k">warning:</span> custom_command rule for 'tvision-test-passed' exited 0 but did not create its declared OUTPUT
+         declared OUTPUT: /home/me/tvision/build/debug/test/tvision-test-passed
+         working dir:     /home/me/tvision/build/debug
+<span class="c">         downstream rules depending on this OUTPUT may fail, and this
+         rule will re-run on every build since its OUTPUT never appears.</span>
+         commands run:
+           $ /home/me/tvision/build/debug/test/tvision-test
+           $ kiln -E touch tvision-test-passed</pre>
     </div>
 </section>
 
@@ -183,7 +199,7 @@ Call Stack (most recent call first):
                                 <td class="bold">
                                     <a
                                         href="https://github.com/64/cmake-raytracer/blob/112030c65d3265aeba5a9364756f66a8f695d031/CMakeLists.txt"
-                                        >cmake-raytracer</a
+                                        >cmake-raytracer (256x256)</a
                                     >
                                 </td>
                                 <td>8.68s</td>
