@@ -161,8 +161,8 @@ Call Stack (most recent call first):
                                     >
                                 </td>
                                 <td>0.649s</td>
-                                <td class="bold accent">0.066s</td>
-                                <td class="bold">9.8x</td>
+                                <td class="bold accent">0.058s</td>
+                                <td class="bold">11.1x</td>
                             </tr>
                             <tr>
                                 <td class="bold">
@@ -172,8 +172,8 @@ Call Stack (most recent call first):
                                     >
                                 </td>
                                 <td>0.446s</td>
-                                <td class="bold accent">0.051s</td>
-                                <td class="bold">8.7x</td>
+                                <td class="bold accent">0.047s</td>
+                                <td class="bold">8.4x</td>
                             </tr>
                             <tr>
                                 <td class="bold">
@@ -183,8 +183,8 @@ Call Stack (most recent call first):
                                     >
                                 </td>
                                 <td>3.629s</td>
-                                <td class="bold accent">0.283s</td>
-                                <td class="bold">12.8x</td>
+                                <td class="bold accent">0.181s</td>
+                                <td class="bold">20.04x</td>
                             </tr>
                             <tr>
                                 <td class="bold">
@@ -194,14 +194,14 @@ Call Stack (most recent call first):
                                     >
                                 </td>
                                 <td>3.56s</td>
-                                <td class="bold accent">0.286s</td>
-                                <td class="bold">12.4x</td>
+                                <td class="bold accent">0.177s</td>
+                                <td class="bold">20.1x</td>
                             </tr>
                             <tr>
                                 <td class="bold">
                                     <a
                                         href="https://github.com/64/cmake-raytracer/blob/112030c65d3265aeba5a9364756f66a8f695d031/CMakeLists.txt"
-                                        >cmake-raytracer (256x256)</a
+                                        >cmake-raytracer (256x256, 32T)</a
                                     >
                                 </td>
                                 <td>8.68s</td>
@@ -227,16 +227,22 @@ Call Stack (most recent call first):
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="bold">
-                                    Warm LLVM reconfig<sup>1</sup>
-                                </td>
-                                <td>1.8s</td>
-                                <td class="bold accent">0.2s</td>
-                                <td class="bold">9.0x</td>
+                                <td class="bold">Cold LLVM configuration</td>
+                                <td>8.2s</td>
+                                <td class="bold accent">4.17s</td>
+                                <td class="bold">2.01x</td>
                             </tr>
                             <tr>
                                 <td class="bold">
-                                    Cold CMake config<sup>2</sup>
+                                    Warm LLVM reconfig<sup>1</sup>
+                                </td>
+                                <td>2.2s</td>
+                                <td class="bold accent">0.55s</td>
+                                <td class="bold">4.0x</td>
+                            </tr>
+                            <tr>
+                                <td class="bold">
+                                    Cold CMake configuration<sup>2</sup>
                                 </td>
                                 <td>21.6s</td>
                                 <td class="bold accent">11.7s</td>
@@ -246,9 +252,9 @@ Call Stack (most recent call first):
                                 <td class="bold">
                                     Warm CMake reconfig<sup>1 2</sup>
                                 </td>
-                                <td>0.4s</td>
+                                <td>0.6s</td>
                                 <td class="bold accent">0.28s</td>
-                                <td class="bold">1.42x</td>
+                                <td class="bold">2.14x</td>
                             </tr>
                         </tbody>
                     </table>
